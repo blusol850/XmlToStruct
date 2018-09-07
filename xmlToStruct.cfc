@@ -31,8 +31,7 @@ component {
 		var child 			= {};
 
 		// only do search on first request where it comes in as a string
-		axml = isSimpleValue(arguments.xmlString) ? XmlSearch(XmlParse(arguments.xmlString),"/node()") : arguments.xmlString;
-		axml = axml[1];
+		axml = isSimpleValue(arguments.xmlString) ? XmlSearch(XmlParse(arguments.xmlString),"/node()")[1] : arguments.xmlString;
 
 		// START : for each children of context node
 		for (var i = 1; i <= arrayLen(axml.XmlChildren); i++){
@@ -73,6 +72,7 @@ component {
 				// process node
 				else {
 					astr[n] = processXMLChild(aXml.XmlChildren[i],n);
+					astr.append({'__attributes' : axml.XmlAttributes});
 				}
 
 			}
